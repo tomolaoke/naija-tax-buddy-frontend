@@ -1,26 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
-export default function VerifyOTP() {
-  const searchParams = useSearchParams();
-  const prefillEmail = searchParams.get('email') || '';
+export default function VerifyPage({ searchParams }) {
+  // ✅ Next.js automatically passes query params here
+  const prefillEmail = searchParams?.email || '';
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(prefillEmail);
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
-  // ✅ Prefill email from query string when component mounts
-  useEffect(() => {
-    if (prefillEmail) {
-      setEmail(prefillEmail);
-    }
-  }, [prefillEmail]);
 
   const handleVerify = async (e) => {
     e.preventDefault();
