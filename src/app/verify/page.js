@@ -5,7 +5,7 @@ import axios from 'axios';
 import Link from 'next/link';
 
 export default function VerifyPage({ searchParams }) {
-  // ✅ Next.js automatically passes query params here
+  // ✅ Next.js automatically injects query params here
   const prefillEmail = searchParams?.email || '';
 
   const [email, setEmail] = useState(prefillEmail);
